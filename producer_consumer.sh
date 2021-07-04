@@ -14,7 +14,7 @@ killer() {
 }
 
 #
-WAITING=100
+WAITING=($(seq 10000 20000 500000))
 N=10
 PRODUCERS=5
 CONSUMERS=$((N-PRODUCERS))
@@ -27,17 +27,12 @@ cc -Wall -o consumer consumer.c -lrt -lpthread
 
 for(( i=1; i <= $PRODUCERS; ++i ))
 do 
-	./producer $N $WAITING $RUNNING $CONSUMERS &
+	./producer $N $WAITING[i] $RUNNING $CONSUMERS &
 done
 
 for(( i=1; i <= $CONSUMERS; ++i ))
 do
-	./consumer $N $WAITING $RUNNING $PRODUCERS &
+	./consumer $N $WAITING[i] $RUNNING $PRODUCERS &
 done
 wait 
-
-
-
-
-
 

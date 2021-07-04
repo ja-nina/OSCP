@@ -101,6 +101,7 @@ int main(int argc, char* argv[]){
   	sem_wait(mutc);
   	msync(buffer, N + 2, MS_SYNC);
   	item = buffer[buffer[N + 1]];
+  	printf("Helper C{%d} consumed \t %d \t at \t %d \n", pid, item, buffer[N]);
 	buffer[N + 1] = (buffer[N + 1] + 1)%N;
   	msync(buffer, N + 2, MS_SYNC);
 	sem_post(mutc);

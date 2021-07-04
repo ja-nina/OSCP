@@ -100,6 +100,7 @@ int main(int argc, char* argv[]){
   	sem_wait(mutp);
   	item = rand()%(2*N);
   	msync(buffer, N + 2, MS_SYNC);
+  	printf("Helper P{%d} produced \t %d \t at \t %d \n", pid, item, buffer[N]);
   	buffer[buffer[N]] = item;
   	buffer[N] = (buffer[N] + 1)%N;
   	msync(buffer, N + 2, MS_SYNC);
