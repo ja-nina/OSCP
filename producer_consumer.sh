@@ -13,12 +13,13 @@ killer() {
     echo "MASS MURDER COMMITED"
 }
 
-#
+#waiting array allows for variable speed - max waiting is 1 sec (here LOWEST possible waiting time in CS is specified)
 WAITING=($(seq 10000 20000 500000))
 N=10
-PRODUCERS=5
+PRODUCERS=6
 CONSUMERS=$((N-PRODUCERS))
-RUNNING=10
+##running time in seconds
+RUNNING=20
 
 echo "The minimum sleepeing time of a process is $WAITING"
 echo "The total number of consumers is $CONSUMERS, while the total number of producers is $PRODUCERS"
